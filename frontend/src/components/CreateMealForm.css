@@ -1,0 +1,45 @@
+.create-meal-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 450px;
+    margin: 0 auto 40px;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+}
+
+.create-meal-form h2{
+    margin: 0 0 10px;
+    text-align: center;
+    color: #213547;
+}
+
+.create-meal-form input{
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.create-meal-form input:focus{
+    outline: none;
+    border-color: #ff6b35;
+}
+
+.create-meal-form button{
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.create-meal-form button:hover{
+    background-color: #e85a2a;
+}
