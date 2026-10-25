@@ -1,4 +1,6 @@
 import DiningCard from "../components/DiningCard";
+import "./Explore.css";
+
 const diningPosts = [
     {
         id: 1,
@@ -57,15 +59,17 @@ function Explore(){
             <h1>Explore Forkly</h1>
             <p>Discover places and meet people to eat with!</p>
 
-            {diningPosts.map((post) => (
-                <DiningCard
-                    key={post.id}
-                    title={post.title}
-                    host={post.host}
-                    time={post.time}
-                    spots={post.spots}
-                />
-            ))}
+            <div className="dining-grid">
+                {diningPosts.map((post) => (
+                    <DiningCard
+                        key={post.id}
+                        title={post.title}
+                        host={post.host}
+                        time={post.time}
+                        spots={post.spots}
+                    />
+                ))}
+            </div>
         </main>
 
     );

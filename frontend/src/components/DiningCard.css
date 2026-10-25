@@ -1,0 +1,38 @@
+.dining-card{
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+    
+}
+
+.dining-card:hover{
+    transform: translateY(-5px);
+}
+
+.dining-card h3{
+    margin-top: 0;
+    font-size: 20px;
+    color: #213547
+}
+
+.dining-card p{
+    color: #666;
+    font-size: 15px;
+}
+
+.dining-card button{
+    background-color: #ff6b35;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.dining-card button:hover{
+    background-color: #e85a2a;
+}

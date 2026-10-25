@@ -1,3 +1,5 @@
+import "./DiningCard.css";
+
 type DiningCardProps = {
     title: string;
     host: string;
