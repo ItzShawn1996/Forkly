@@ -1,14 +1,15 @@
 import "./Navbar.css";
+import {Link} from "react-router-dom";
 
 function Navbar(){
     return (
         <nav className="navbar">
             <h1>Forkly</h1>
             <div className="nav-links">
-                <a href="/">Home</a>
-                <a href="/explore">Explore</a>
-                <a href="/about">About</a>
-                <a href="/login">Login</a>
+                <Link to="/">Home</Link>
+                <Link to="/explore">Explore</Link>
+                <Link to="/about">About</Link>
+                <Link to="/login">Login</Link>
             </div>
         </nav>
     );
