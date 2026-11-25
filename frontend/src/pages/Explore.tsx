@@ -9,14 +9,16 @@ const initialDiningPosts = [
         title: "Lunch at Student Center",
         host: "Jibreel",
         time: "12:30 PM",
-        spots: 0
+        spots: 0,
+        joined: false
     },
     {
         id: "2",
         title: "Dinner at Chipotle",
         host: "Pearce",
         time: "6:00 PM",
-        spots: 3
+        spots: 3,
+        joined: false
     },
     {
         id: "3",
@@ -24,6 +26,7 @@ const initialDiningPosts = [
         host: "Nicholas",
         time: "10:00 AM",
         spots: 1,
+        joined: false
     },
     {
         id: "4",
@@ -31,6 +34,7 @@ const initialDiningPosts = [
         host: "Mindy",
         time: "8:00 AM",
         spots: 4,
+        joined: false
     },
     {
         id: "5",
@@ -38,20 +42,23 @@ const initialDiningPosts = [
         host: "Aleem",
         time: "1:00 PM",
         spots: 2,
+        joined: false
     },
     {
         id: "6",
         title: "Dinner at Olive Garden",
         host: "Jonathan",
         time: "7:00 PM",
-        spots: 3
+        spots: 3,
+        joined: false
     },
     {
         id: "7",
         title: "Brunch at Panera",
         host: "Stefan",
         time: "11:00 AM",
-        spots: 2
+        spots: 2,
+        joined: false
     }
 ];
 
@@ -61,10 +68,11 @@ function Explore(){
     const [diningPosts, setDiningPosts] = useState(initialDiningPosts);
     const [showCreateForm, setShowCreateForm] = useState(false);
 
-    function handleCreateMeal(meal: {title: string; host: string; time: string; spots: number; }){
+    function handleCreateMeal(meal: {title: string; host: string; time: string; spots: number}): void {
         const newPost = {
             id: crypto.randomUUID(),
-            ...meal
+            ...meal,
+            joined: false
         };
         setDiningPosts((previousPosts) => [
             ...previousPosts,
@@ -74,8 +82,28 @@ function Explore(){
         setShowCreateForm(false);
     }
 
+    function handleToggleJoin(id: string) {
+        setDiningPosts((previousPosts) =>
+            previousPosts.map((post) =>{
+                if(post.id !== id){
+                    return post;
+                }
+
+                if(!post.joined && post.spots === 0){
+                    return post;
+                }
+
+                return {
+                    ...post,
+                    joined: !post.joined,
+                    spots: post.joined ? post.spots + 1 : post.spots - 1
+                };
+            })
+        );
+    }
+
     const filteredPosts = diningPosts.filter((post) => {
-        const matchesAvailability = filter === "all" || post.spots > 0;
+        const matchesAvailability = filter === "all" || post.spots > 0 || post.joined;
         const matchesSearch = post.title
             .toLowerCase()
             .includes(search.toLowerCase());
@@ -138,6 +166,8 @@ function Explore(){
                             host={post.host}
                             time={post.time}
                             spots={post.spots}
+                            joined={post.joined}
+                            onToggleJoin={() => handleToggleJoin(post.id)}
                         />
                     ))}
                 </div>

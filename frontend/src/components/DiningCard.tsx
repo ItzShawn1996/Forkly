@@ -1,27 +1,28 @@
 import "./DiningCard.css";
-import { useState } from "react";
+
 
 type DiningCardProps = {
     title: string;
     host: string;
     time: string;
     spots: number;
+    joined: boolean;
+    onToggleJoin: () => void;
 };
 
-function DiningCard({title, host, time, spots}: DiningCardProps){
-    const [joined, setJoined] = useState(false);
+function DiningCard({title, host, time, spots, joined, onToggleJoin}: DiningCardProps){
     const isFull = spots === 0;
     return(
         <div className="dining-card">
             <h3>{title}</h3>
             <p>Posted by {host}</p>
             <p>Time: {time}</p>
-            <p>Available spots: {joined ? spots - 1 : spots}</p>
+            <p>Available spots: {spots}</p>
             <button 
-                onClick={() => setJoined(!joined)}
+                onClick={(onToggleJoin)}
                 disabled={isFull && !joined}
             >
-                {joined ? "Joined!" : isFull ? "Meal Full" : "Join Meal"}
+                {joined ? "Leave Meal" : isFull ? "Meal Full" : "Join Meal"}
             </button>
         </div>
     );
