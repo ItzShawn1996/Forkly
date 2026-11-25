@@ -59,13 +59,9 @@ function Explore(){
     const [filter, setFilter] = useState("all");
     const [search, setSearch] = useState("");
     const [diningPosts, setDiningPosts] = useState(initialDiningPosts);
+    const [showCreateForm, setShowCreateForm] = useState(false);
 
-    function handleCreateMeal(meal: {
-        title: string;
-        host: string;
-        time: string;
-        spots: number;
-    }) {
+    function handleCreateMeal(meal: {title: string; host: string; time: string; spots: number; }){
         const newPost = {
             id: crypto.randomUUID(),
             ...meal
@@ -74,6 +70,8 @@ function Explore(){
             ...previousPosts,
             newPost
         ]);
+
+        setShowCreateForm(false);
     }
 
     const filteredPosts = diningPosts.filter((post) => {
@@ -91,7 +89,16 @@ function Explore(){
                 <p>Discover places and meet people to eat with!</p>
             </header>
 
-            <CreateMealForm onCreateMeal={handleCreateMeal} />
+            <button
+                className="create-meal-toggle"
+                onClick={() => setShowCreateForm(!showCreateForm)}
+            >
+                {showCreateForm? "Close Form" : "+ Create Meal"}
+            </button>
+
+            {showCreateForm && (
+                <CreateMealForm onCreateMeal={handleCreateMeal} />
+            )}
 
             <div className="explore-search">
                 <input
